@@ -2,7 +2,9 @@
 
 div(
   :class="$style.input"
-) 123
+  @click="changeTheme"
+  :style="{ background: msg }"
+) {{ msg }}
 
 </template>
 
@@ -15,6 +17,11 @@ export default defineComponent({
   props: {
     msg: String,
   },
+  methods: {
+    changeTheme() {
+      console.log('changeTheme')
+    }
+  }
 })
 
 </script>
@@ -23,6 +30,8 @@ export default defineComponent({
 
 .input {
   color: var(--font-color);
+  height: 300px;
+  width: 500px;
 }
 
 </style>

@@ -2,8 +2,20 @@
 
 div(
 )
+  div 1234
   BaseInput(
-    msg="Welcome to Your Vue.js + TypeScript App"
+    @click="$router.push('/auth')"
+    msg="red"
+  )
+  div 1234
+  BaseInput(
+    @click="$router.push('/auth')"
+    msg="green"
+  )
+  div 1234
+  BaseInput(
+    @click="$router.push('/auth')"
+    msg="yellow"
   )
 
 </template>

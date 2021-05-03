@@ -4,7 +4,8 @@ div(
 
 )
   BaseInput(
-    msg="Welcome to Your Vue.js + TypeScript App"
+    @click="$router.push('/')"
+    msg="blue"
   )
 
 </template>
