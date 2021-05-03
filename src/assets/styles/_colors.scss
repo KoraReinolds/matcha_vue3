@@ -1,0 +1,19 @@
+body {
+
+  &.dark {
+    --background-color: #17223b;
+    --block-color-1: #263859;
+    --block-color-2: #6b778d;
+    --main-color: #ff6741;
+    --font-color: #fff;
+  }
+  
+  &.light {
+    --background-color: #fcecdd;
+    --block-color-1: #ffc288;
+    --block-color-2: #fea82f;
+    --main-color: #ff6741;
+    --font-color: #000;
+  }
+
+}

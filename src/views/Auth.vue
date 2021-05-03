@@ -1,6 +1,7 @@
 <template lang="pug">
 
 div(
+
 )
   BaseInput(
     msg="Welcome to Your Vue.js + TypeScript App"
