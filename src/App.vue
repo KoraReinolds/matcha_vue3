@@ -10,7 +10,7 @@ router-view
 <script lang="ts">
 
 import { defineComponent } from "vue"
-import store from './store'
+import useClickRegistration from "@/composables/useClickRegistration"
 import circularReveal from "@/animation/circularReveal"
 
 export default defineComponent({
@@ -18,22 +18,16 @@ export default defineComponent({
   methods: {
     async changeTheme({ clientX, x, clientY, y }: MouseEvent) {
 
-      await circularReveal({ x, y })
+      await circularReveal({ coords: { x, y } })
 
       const body: HTMLElement = window.document.body
       const theme: string = body.className
       body.className = theme === 'dark' ? 'light' : 'dark'
 
     },
-    regClick({ clientX, x, clientY, y }: MouseEvent) {
-      store.commit('SET_LAST_CLICK_COORDS', { x, y })
-    }
   },
-  unmounted() {
-    window.removeEventListener("mousedown", this.regClick)
-  },
-  mounted() {
-    window.addEventListener("mousedown", this.regClick)
+  setup() {
+    useClickRegistration()
   }
 })
 

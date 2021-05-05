@@ -2,7 +2,6 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 import Home from "@/views/Home.vue"
 import store from "@/store"
 import circularReveal from "@/animation/circularReveal"
-import Coords from "@/types/coords"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,14 +24,10 @@ const router = createRouter({
 
 router.beforeEach(async (to: any, from: any, next: any) => {
 
-  const coords: Coords | null = store.state.coords
-
-  if (!coords) next()
-  else {
-    await circularReveal(coords)
-    next()
-  }  
+  await circularReveal({ coords: store.state.coords })
+  
+  next()
 
 })
 
-export default router;
+export default router

@@ -3,7 +3,9 @@ import { createStore } from "vuex";
 export default createStore({
 
   state: {
-    coords: null
+    coords: {
+      x: 0, y: 0
+    }
   },
 
   mutations: {

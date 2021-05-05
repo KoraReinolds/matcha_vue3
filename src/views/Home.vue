@@ -4,12 +4,10 @@ div(
 )
   div 1234
   BaseInput(
-    @click="$router.push('/auth')"
     msg="red"
   )
   div 1234
   BaseInput(
-    @click="$router.push('/auth')"
     msg="green"
   )
   div 1234
