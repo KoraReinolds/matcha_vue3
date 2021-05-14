@@ -4,3 +4,13 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+// declare module '*.scss' {
+//   const content: {[className: string]: string};
+//   export default content;
+// }
+
+// declare module '*.scss' {
+//   export const content: { [className: string]: string };
+//   export default content;
+// }

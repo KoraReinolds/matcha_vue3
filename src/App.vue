@@ -35,32 +35,35 @@ export default defineComponent({
 
 <style lang="scss">
 
-#app1 {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  overflow: hidden;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-html, body, #app {
-  min-height: 100vh;
-}
+  #app1 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+  }
 
-body {
-  margin: 0;
-}
+  html, body, #app {
+    min-height: 100vh;
+  }
 
-#app {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--background-color);
-}
+  body {
+    margin: 0;
+  }
 
-Header {
-  background: var(--block-color-1);
-  height: 200px;
-  width: 100%;
-}
+  #app {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background-color);
+  }
+
+  Header {
+    background: var(--block-color-1);
+    height: 200px;
+    width: 100%;
+  }
 
 </style>

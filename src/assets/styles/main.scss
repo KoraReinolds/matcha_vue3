@@ -1,1 +1,13 @@
-@import 'colors'
+@import 'colors';
+
+body {
+  --font-size: 14px;
+  --input-border-radius: 1px;
+  --line-height: 1.2;
+  --input-padding: 12px;
+  
+  .thick {
+    --input-padding: 4px;
+  }
+
+}

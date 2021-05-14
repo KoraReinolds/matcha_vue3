@@ -1,12 +1,10 @@
 <template lang="pug">
 
-div(
-
+BaseInput(
+  :class="['form_input']"
+  v-bind="$attrs"
+  v-model="value"
 )
-  BaseInput(
-    msg="Welcome to Your Vue.js + TypeScript App"
-  )
-
 </template>
 
 <script lang="ts">
@@ -15,10 +13,17 @@ import { defineComponent } from "vue"
 import BaseInput from "@/components/BaseInput.vue"
 
 export default defineComponent({
-  name: "Home",
+  name: "TextField",
+  data: () => ({
+    value: '',
+  }),
   components: {
     BaseInput,
   },
 })
 
 </script>
+
+<style module lang="scss">
+
+</style>

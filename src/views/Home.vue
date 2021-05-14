@@ -2,18 +2,13 @@
 
 div(
 )
-  div 1234
-  BaseInput(
-    msg="red"
+  TextField(
+    :many="true"
   )
-  div 1234
-  BaseInput(
-    msg="green"
+  TextField(
   )
-  div 1234
-  BaseInput(
-    @click="$router.push('/auth')"
-    msg="yellow"
+  TextField(
+    :many="true"
   )
 
 </template>
@@ -21,12 +16,12 @@ div(
 <script lang="ts">
 
 import { defineComponent } from "vue"
-import BaseInput from "@/components/BaseInput.vue"
+import TextField from "@/components/TextField.vue"
 
 export default defineComponent({
   name: "Home",
   components: {
-    BaseInput,
+    TextField,
   },
 })
 
