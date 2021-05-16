@@ -3,6 +3,17 @@ import BaseInput from "@/components/BaseInput.vue"
 
 describe("BaseInput.vue", () => {
 
+  it("pass class", () => {
+
+    const wrapper = shallowMount(BaseInput, {
+      props: { class: '123' },
+    })
+    const input = wrapper.find(`[data-test='input']`)
+
+    expect(input.attributes('class')).toBe('123')
+    
+  })
+
   it("by default render empty <input />", () => {
 
     const wrapper = shallowMount(BaseInput)

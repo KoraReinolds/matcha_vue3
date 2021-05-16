@@ -46,6 +46,11 @@ export default defineComponent({
 
   html, body, #app {
     min-height: 100vh;
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
   }
 
   body {

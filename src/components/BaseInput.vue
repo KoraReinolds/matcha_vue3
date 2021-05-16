@@ -7,6 +7,7 @@ export default defineComponent({
   props: {
     class: {
       type: String,
+      default: '',
     },
     many: {
       type: Boolean,
@@ -24,7 +25,7 @@ export default defineComponent({
     return h(
       tag,
       {
-        class: [this.class, 'input'].join(' '),
+        class: this.class,
         ['data-test']: tag,
         value: this.modelValue,
         onInput: ($e: InputEvent) => {
@@ -50,41 +51,29 @@ export default defineComponent({
 <style lang="scss">
 
   $font-size: var(--font-size);
-  $border-height: var(--input-border-radius);
+
+  textarea,
+  input {
+    width: 100%;
+    height: 100%;
+    font-size: $font-size;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--block-color-0);
+    padding: var(--input-padding);
+    resize: none;
+    border: none;
+    color: var(--font-color);
+    line-height: var(--line-height);
+    border-radius: inherit;
+
+    &:focus {
+      outline: none;
+    }
+
+  }
 
   textarea {
     margin-bottom: -4px;
   }
 
-  .input {
-
-    font-family: 'Roboto', sans-serif;
-    width: 100%;
-    border: $border-height solid transparent;
-    background-color: var(--block-color-0);
-    line-height: var(--line-height);
-    font-size: $font-size;
-    padding: var(--input-padding);
-    border-radius: 4px;
-    color: var(--font-color);
-    box-sizing: border-box;
-    resize: none;
-    transition-duration: 0.5s;
-    transition-property: border;
-
-    &:focus {
-      outline: none;
-      border: $border-height solid var(--block-color-2);
-    }
-
-    &:hover:not(:focus) {
-      border: $border-height solid var(--block-color-1);
-    }
-
-  }
-
-  .form_input.input {
-    margin-bottom: 10px;
-  }
-  
 </style>

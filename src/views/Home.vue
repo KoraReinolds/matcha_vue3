@@ -4,12 +4,18 @@ div(
 )
   TextField(
     :many="true"
+    v-model="value"
+    placeholder="123"
   )
   TextField(
+    v-model="value"
+    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
   )
   TextField(
     :many="true"
+    v-model="value"
   )
+  div {{ value }}
 
 </template>
 
@@ -20,6 +26,9 @@ import TextField from "@/components/TextField.vue"
 
 export default defineComponent({
   name: "Home",
+  data: () => ({
+    value: '',
+  }),
   components: {
     TextField,
   },
