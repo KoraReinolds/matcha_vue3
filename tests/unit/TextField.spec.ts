@@ -10,7 +10,7 @@ describe("TextField.vue", () => {
   it("legend not render without placeholder", () => {
 
     const wrapper = shallowMount(TextField)
-    const legend = wrapper.find(`[data-test='legend']`)
+    const legend = wrapper.find('legend')
 
     expect(legend.exists()).toBe(false)
     
@@ -21,7 +21,7 @@ describe("TextField.vue", () => {
     const wrapper = shallowMount(TextField, {
       props: { placeholder: '123' }
     })
-    const legend = wrapper.find(`[data-test='legend']`)
+    const legend = wrapper.find('legend')
 
     expect(legend.exists()).toBe(true)
     

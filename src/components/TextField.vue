@@ -1,23 +1,19 @@
 <template lang="pug">
 
 label(
-  :class="[$style.label]"
-  data-test='label'
+  :class="[$style.label, $style[type], { [$style.rounded]: type === 'outlined' && rounded }, { [$style.filled]: filled }]"
 )
   BaseInput(
     v-bind="$attrs"
-    :class="[$attrs.modelValue && $style.filled].join(' ')"
+    :class="[$attrs.modelValue && $style.not_empty].join(' ')"
   )
   div(
     :class="[$style.placeholder]"
-    data-test='placeholder'
   ) {{ placeholder }}
   fieldset(
     :class="[$style.fieldset]"
-    data-test='fieldset'
   )
     legend(
-      data-test='legend'
       v-if="placeholder"
       :class="[$style.legend]"
     ) ..{{ placeholder }}..
@@ -37,6 +33,21 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+    filled: {
+      type: Boolean,
+      default: false,
+    },
+    type: {
+      type: String,
+      default: 'regular',
+      validator: (v: string) => {
+        return ['regular', 'outlined'].includes(v)
+      }
+    }
   },
   components: {
     BaseInput,
@@ -47,14 +58,48 @@ export default defineComponent({
 
 <style module lang="scss">
 
-$border-height: var(--input-border-radius);
+
+$border-height: var(--input-border-thick);
 $legend-font-size: 10px;
+
+.regular {
+
+  input, textarea {
+    &.filled,
+    &:focus {
+      & ~ .fieldset:after {
+        width: 100%;
+      }
+    }
+  }
+
+  .fieldset:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 0%;
+    background-color: var(--block-color-2);
+    transition: width 0.7s;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: var(--block-color-2);
+  }
+
+}
 
 .label {
   position: relative;
   margin-bottom: 10px;
   display: block;
-  border-radius: 4px;
+  border-radius: var(--input-border-radius);
+  cursor: text;
 }
 
 .fieldset {
@@ -64,7 +109,7 @@ $legend-font-size: 10px;
   width: 100%;
   top: 0;
   padding: 0;
-  border: 1px solid transparent;
+  border: 1px solid var(--input-border-color);
   margin: 0;
   transition-duration: 0.5s;
   transition-property: border;
@@ -74,7 +119,7 @@ $legend-font-size: 10px;
   max-width: 0;
   height: 0;
   color: transparent;
-  margin: 0 0 0 var(--input-padding);
+  margin: 0 0 0 calc(var(--input-rounded-left-offset) + var(--input-padding));
   padding: 0;
   font-size: $legend-font-size;
   transition: max-width .5s ease;
@@ -83,15 +128,15 @@ $legend-font-size: 10px;
 textarea,
 input {
 
-  &.filled,
+  &.not_empty,
   &:focus {
     & ~ .placeholder {
-      top: calc(0% - #{$legend-font-size} * var(--line-height) / 2);
+      top: calc(0% - #{$legend-font-size} * var(--line-height) / 2 + var(--input-top-offset));
       font-size: $legend-font-size;
-      left: calc(var(--input-padding) + 5px);
+      left: calc(var(--input-rounded-left-offset) + var(--input-padding) + 5px);
     }
     & ~ .fieldset {
-      border: $border-height solid var(--block-color-2);
+      border: $border-height solid var(--input-border-color-focus);
       & .legend {
         max-width: 50%;
       }
@@ -99,15 +144,15 @@ input {
   }
 
   &:hover:not(:focus) ~ .fieldset {
-    border: $border-height solid var(--block-color-1);
+    border: $border-height solid var(--input-border-color-focus);
   }
 
 }
 
 .placeholder {
   position: absolute;
-  top: calc(50% - var(--font-size) * var(--line-height) / 2);
-  left: var(--input-padding);
+  top: calc(50% - var(--font-size) * var(--line-height) / 2 + var(--input-top-offset));
+  left: calc(var(--input-rounded-left-offset) + var(--input-padding));
   color: var(--block-color-2);
   transition-duration: 0.5s;
   transition-property: top font-size;

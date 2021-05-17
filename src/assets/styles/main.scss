@@ -2,12 +2,37 @@
 
 body {
   --font-size: 14px;
-  --input-border-radius: 1px;
+  --input-border-thick: 1px;
+  --input-border-radius: 4px;
   --line-height: 1.2;
   --input-padding: 12px;
+  --input-rounded-left-offset: 0px;
+  --input-background: inherit;
+  --input-border-color: transparent;
+  --input-border-color-focus: var(--block-color-2);
+  --input-top-offset: 0px;
   
   .thick {
     --input-padding: 4px;
+  }
+  
+  .rounded {
+    --input-border-radius: calc(var(--font-size) * var(--line-height) / 2 + var(--input-padding));
+    --input-rounded-left-offset: calc(var(--font-size) * var(--line-height) / 2);
+  }
+
+  .filled {
+    --input-background: var(--block-color-0);
+  }
+
+  .outlined {
+    --input-border-color: var(--block-color-2);
+  }
+
+  .regular {
+    --input-border-color-focus: transparent;
+    --input-border-radius: 0px;
+    --input-top-offset: calc(var(--input-padding) * 0.7);
   }
 
 }

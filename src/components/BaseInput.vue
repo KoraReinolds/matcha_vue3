@@ -58,8 +58,11 @@ export default defineComponent({
     height: 100%;
     font-size: $font-size;
     font-family: 'Roboto', sans-serif;
-    background-color: var(--block-color-0);
-    padding: var(--input-padding);
+    background-color: var(--input-background);
+    padding:
+      calc(var(--input-padding) + var(--input-top-offset))
+      calc(var(--input-rounded-left-offset) + var(--input-padding))
+      calc(var(--input-padding) - var(--input-top-offset));
     resize: none;
     border: none;
     color: var(--font-color);
