@@ -5,12 +5,8 @@ declare module '*.vue' {
   export default component
 }
 
-// declare module '*.scss' {
-//   const content: {[className: string]: string};
-//   export default content;
-// }
-
-// declare module '*.scss' {
-//   export const content: { [className: string]: string };
-//   export default content;
-// }
+declare module '*.json' 
+{
+  const value: { [key: string]: any };
+  export default value;
+}

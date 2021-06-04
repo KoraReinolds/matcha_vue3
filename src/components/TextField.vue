@@ -1,15 +1,23 @@
 <template lang="pug">
 
 label(
-  :class="[$style.label, $style[type], { [$style.rounded]: type === 'outlined' && rounded }, { [$style.filled]: filled }]"
+  :class="[\
+    $style.label,\
+    $style[type],\
+    { [$style.rounded]: type === 'outlined' && rounded },\
+    { [$style.filled]: filled }\
+  ]"
 )
   BaseInput(
     v-bind="$attrs"
     :class="[$attrs.modelValue && $style.not_empty].join(' ')"
   )
+
   div(
+    v-if="placeholder"
     :class="[$style.placeholder]"
   ) {{ placeholder }}
+
   fieldset(
     :class="[$style.fieldset]"
   )
@@ -44,9 +52,7 @@ export default defineComponent({
     type: {
       type: String,
       default: 'regular',
-      validator: (v: string) => {
-        return ['regular', 'outlined'].includes(v)
-      }
+      validator: (v: string) => ['regular', 'outlined'].includes(v)
     }
   },
   components: {

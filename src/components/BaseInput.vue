@@ -29,6 +29,7 @@ export default defineComponent({
         ['data-test']: tag,
         value: this.modelValue,
         onInput: ($e: InputEvent) => {
+          // console.log($e)
           // const value = ($e.shiftKey && $e.code === 'Enter') ? ($e.target as HTMLInputElement).value : ''
           // if (this.input) this.input.value = value
           this.$emit('update:modelValue', ($e.target as HTMLInputElement).value)

@@ -1,61 +1,75 @@
 <template lang="pug">
 
-div(
+Form(
+  :schema="registrationForm"
 )
-  TextField(
-    :many="true"
-    v-model="value"
-    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
-    type="outlined"
-    filled
-  )
-  TextField(
-    v-model="value"
-    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
-    type="outlined"
-    rounded
-  )
-  TextField(
-    v-model="value"
-    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
-    type="outlined"
-    rounded
-    filled
-  )
-  TextField(
-    :many="true"
-    v-model="value"
-    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
-    filled
-  )
-  TextField(
-    :many="true"
-    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
-    v-model="value"
-    rounded
-  )
-  TextField(
-    v-model="value"
-    placeholder="123dskfldfahfodshoidsf sjafhsdoi;hfds"
-    rounded
-    filled
-  )
-  div {{ value }}
 
 </template>
 
 <script module lang="ts">
 
-import { defineComponent } from "vue"
+import { defineComponent, ref } from "vue"
 import TextField from "@/components/TextField.vue"
+import Form from "@/components/Form.vue"
 
 export default defineComponent({
   name: "Home",
-  data: () => ({
-    value: '',
-  }),
   components: {
     TextField,
+    Form,
+  },
+  setup() {
+    
+    const registrationForm = [
+      {
+        key: "firstName",
+        component: "TextField",
+        label: "First Name",
+        placeholder: "Введите имя",
+        validations: {
+          required: {
+            params: null,
+            message: "This field is required"
+          },
+          minLength: {
+            params: 3,
+            message: "Please type at least 3 characters"
+          }
+        }
+      },
+      {
+        key: "lastName",
+        component: "TextField",
+        label: "Last Name",
+        placeholder: "Введите фамилию",
+        validations: {
+          required: {
+            params: null,
+            message: "This field is required"
+          }
+        }
+      },
+      {
+        key: "email",
+        component: "TextField",
+        label: "Email",
+        placeholder: "Введите адрес электронной почты",
+        type: "email",
+        validations: {
+          required: {
+            params: null,
+            message: "This field is required"
+          },
+          email: {
+            params: null,
+            message: "This field needs to be a valid email"
+          }
+        }
+      }
+    ]
+
+    return { registrationForm }
+
   },
 })
 
